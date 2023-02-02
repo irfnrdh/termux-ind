@@ -1,4 +1,4 @@
-# Tutorial Termux Bahasa Indonesia
+# Termux Indonesia
 
 
 All About Termux
