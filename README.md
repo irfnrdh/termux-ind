@@ -3,6 +3,7 @@ All About Termux
 
 Boomarks:
 - https://devdocs.io/
+- https://www.freecodecamp.org/
 
 Toolkits :
 - zellij
