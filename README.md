@@ -17,5 +17,6 @@
   - Hacking Mod
 - Dotfiles Basic
 - Cheatsheet
+  - [Daftar Perintah di termux](https://github.com/irfnrdh/termux-ind/wiki/Perintah-di-Termux) 
 - Tutorial
 - Bookmark
