@@ -5,7 +5,11 @@
   <p>All About Termux</p>
 </div>
   
+## Penggunaan
 
+- `pkg install git`
+- `git clone https://github.com/irfnrdh/termux-ind.git`
+- `cd termux-ind && chomod +x run.sh && ./run.sh`
 
 Boomarks:
 - https://devdocs.io/
