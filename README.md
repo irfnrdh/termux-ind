@@ -1,8 +1,11 @@
 ![Termux](TERMUX.jpg)
 
-<h1><center>Termux Indonesia</center></h1>
+<div align="center">
+  <h1>Termux Indonesia</h1>
+  <p>All About Termux</p>
+</div>
+  
 
-<p><center>All About Termux</center></p>
 
 Boomarks:
 - https://devdocs.io/
