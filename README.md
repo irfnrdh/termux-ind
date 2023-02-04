@@ -1,5 +1,8 @@
-# Termux Indonesia
-All About Termux
+![Termux](TERMUX.jpg)
+
+<h1><center>Termux Indonesia</center></h1>
+
+<p><center>All About Termux</center></p>
 
 Boomarks:
 - https://devdocs.io/
