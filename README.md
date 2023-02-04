@@ -19,4 +19,4 @@
 - Cheatsheet
   - [Daftar Perintah di termux](https://github.com/irfnrdh/termux-ind/wiki/Perintah-di-Termux) 
 - Tutorial
-- [Bookmark](bookmarks.md)
+- [Bookmark](Bookmarks.md)
