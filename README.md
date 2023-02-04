@@ -11,7 +11,7 @@
 - `git clone https://github.com/irfnrdh/termux-ind.git`
 - `cd termux-ind && chomod +x run.sh && ./run.sh`
 
-## Fitur
+## Apa saja didalamnya?
 - Installer 
   - Ngoding Mod
   - Hacking Mod
