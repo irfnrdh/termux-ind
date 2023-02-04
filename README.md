@@ -16,7 +16,7 @@
   - Ngoding Mod
   - Hacking Mod
 - Dotfiles Basic
-- Cheatsheet(Cheatsheets.md)
+- [Cheatsheet](Cheatsheets.md)
   - [Daftar Perintah di termux](https://github.com/irfnrdh/termux-ind/wiki/Perintah-di-Termux) 
 - [Tutorial](Tutorial.md) (Mulai dari Newbie)
 - [Bookmark](Bookmarks.md)
