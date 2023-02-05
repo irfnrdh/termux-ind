@@ -2,9 +2,11 @@
 
 # ==================================================================================================
 # Installer Termux-Ind - Sebuah Installer Untuk Termux.
+# Inspirasinya ada di issue (https://github.com/irfnrdh/termux-ind/)
 # Copyright hanya milik Allah, kita mah bukan siapa2 (C) 05.02.23 @irfnrdh - Ruema Belajar
 # Penggunaan : 
-# pkg install wget && bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )
+# pkg install wget 
+# bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )
 # ==================================================================================================
 
 ## ANSI Colors (FG & BG)
