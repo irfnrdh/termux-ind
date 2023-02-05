@@ -38,12 +38,10 @@ echo
 # Mulai Install
 echo -e "\033[1;32m Kita akan mulai install... \033[0m"
 
-# pkg install -y php readline git
+pkg install -y readline git
 
 echo -e "\033[1;32m Cloning Repositori Termux-Ind ... \033[0m"
 git clone --depth 1 https://github.com/irfnrdh/termux-ind "$DEST"
-
-
 
 echo $red 
 echo ""----------------------------------------------------------------------------- ""
@@ -72,10 +70,10 @@ pkg install termux-api
 
 
 # Git
-pkg install git -y
-git config --global credential.helper store
-git config --global user.email "..."
-git config --global user.name "..."
+# pkg install git -y
+# git config --global credential.helper store
+# git config --global user.email "..."
+# git config --global user.name "..."
 
 # Essentials
 pkg install vim
@@ -83,65 +81,64 @@ pkg install nvim
 pkg install htop
 
 
-   
-apt install python -y           
-apt install python2 -y
-apt install ruby -y 
+# apt install python -y           
+# apt install python2 -y
+# apt install ruby -y 
 
-apt install php -y 
-apt install perl -y
-apt install nmap -y
+# apt install php -y 
+# apt install perl -y
+# apt install nmap -y
 
-apt install bash -y
-apt install clang -y
-apt install jq -y
-apt install macchanger -y
+# apt install bash -y
+# apt install clang -y
+# apt install jq -y
+# apt install macchanger -y
 
-apt install nano -y
-apt install curl -y
-apt install tar -y
-apt install zip -y
+# apt install nano -y
+# apt install curl -y
+# apt install tar -y
+# apt install zip -y
 
-apt install unzip -y
-apt install tor -y
-apt install wget -y
+# apt install unzip -y
+# apt install tor -y
+# apt install wget -y
 
-apt install wcalc -y 
-apt install openssl
-apt install bmon -y
+# apt install wcalc -y 
+# apt install openssl
+# apt install bmon -y
 
 
 echo " Telah berhasil di install "
 
-pkg install fish
+# pkg install fish
 
 ## Hex Editor
 ## hexdump, od and xxd
-pkg install hexcurse # https://github.com/LonnyGomes/hexcurse
-pkg install ired     # https://github.com/radare/ired
-pkg install radare2  # https://rada.re
+# pkg install hexcurse # https://github.com/LonnyGomes/hexcurse
+# pkg install ired     # https://github.com/radare/ired
+# pkg install radare2  # https://rada.re
 
 
 ## Text Editor
 
-pkg install nano
-pkg install vim
-pkg install neovim
-pkg install micro
-pkg install emacs
+# pkg install nano
+# pkg install vim
+# pkg install neovim
+# pkg install micro
+# pkg install emacs
 
 
 
 ## Setup 
 
-cat > "$DEST/data/users.php" << XXXXX
-<?php
-/*|[{"username":"termux","password":"6558b496fb21c09603c5b28c998481ae075228ad","project":"\/data\/data\/com.termux\/files\/home\/"}]|*/
-?>
-XXXXX
+# cat > "$DEST/data/users.php" << XXXXX
+# <?php
+# /*|[{"username":"termux","password":"6558b496fb21c09603c5b28c998481ae075228ad","project":"\/data\/data\/com.termux\/files\/home\/"}]|*/
+# ?>
+# XXXXX
 
 
-chmod +x "$PREFIX/bin/ind" 
+# chmod +x "$PREFIX/bin/ind" 
 echo -e "\033[1;32m Alhamdulillah Selesai! Cobain perintah 'ind'...  \033[0m"
 
 # exit
