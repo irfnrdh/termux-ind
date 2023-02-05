@@ -9,7 +9,7 @@
 ## Kebutuhan 
 - Tidak perlu di root untuk dapat bekerja
 - Minimal Android 7+ 
-- Menginstall VNC atau Xserver client untuk jadi desktop (bVNC or XserverXSDL)
+- Menginstall VNC atau Xserver client untuk jadi desktop mod (bVNC or XserverXSDL)
 - Termux di Install dari F-Droid
 - TermuxAPI di Install dari F-Droid
 > Termux di google play sudah tidak update lagi
