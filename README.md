@@ -33,3 +33,6 @@ Untuk memulai instalasi Termux-Ind dapat ikuti langkah-langkah berikut dibawah.
 - [Tutorial](Tutorial.md) (Mulai dari Newbie)
 - [Panduan](https://termux.gitbook.io/)
 - [Bookmark](Bookmarks.md)
+
+## Testing
+- Menggunakan Android 13
