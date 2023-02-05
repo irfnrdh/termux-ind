@@ -77,6 +77,8 @@ then
     fi
 fi
 
+{ usage; reset_color; exit 0; }
+
 # Informasi
 echo "Ini adalah `uname -s` berjalan di `uname -m` processor."
 echo
