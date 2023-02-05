@@ -7,10 +7,62 @@
 # pkg install wget && bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )
 # ==================================================================================================
 
-# Letak Installer Folder
+## ANSI Colors (FG & BG)
+RED="$(printf '\033[31m')"  GREEN="$(printf '\033[32m')"  ORANGE="$(printf '\033[33m')"  BLUE="$(printf '\033[34m')"
+MAGENTA="$(printf '\033[35m')"  CYAN="$(printf '\033[36m')"  WHITE="$(printf '\033[37m')" BLACK="$(printf '\033[30m')"
+REDBG="$(printf '\033[41m')"  GREENBG="$(printf '\033[42m')"  ORANGEBG="$(printf '\033[43m')"  BLUEBG="$(printf '\033[44m')"
+MAGENTABG="$(printf '\033[45m')"  CYANBG="$(printf '\033[46m')"  WHITEBG="$(printf '\033[47m')" BLACKBG="$(printf '\033[40m')"
+
+reset_color() {
+	printf '\033[37m'
+}
+
+## Script Termination
+exit_on_signal_SIGINT() {
+    { printf "${RED}\n\n%s\n\n" "[!] Program Interrupted." 2>&1; reset_color; }
+    exit 0
+}
+
+exit_on_signal_SIGTERM() {
+    { printf "${RED}\n\n%s\n\n" "[!] Program Terminated." 2>&1; reset_color; }
+    exit 0
+}
+
+trap exit_on_signal_SIGINT SIGINT
+trap exit_on_signal_SIGTERM SIGTERM
+
+## Letak Installer Folder
 DEST="$HOME/termux-ind"
 
-# Cek apakah foldernya ada
+## Banner
+banner() {
+	clear
+    cat <<- EOF
+		${RED}┌──────────────────────────────────────────────────────────┐
+		${RED}│${GREEN}░░▀█▀░█▀▀░█▀▄░█▄█░█░█░█░█░░░░░▀█▀░█▀█░█▀▄░░░${RED}│
+		${RED}│${GREEN}░░░█░░█▀▀░█▀▄░█░█░█░█░▄▀▄░▄▄▄░░█░░█░█░█░█░░░${RED}│
+		${RED}│${GREEN}░░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░░░░░▀▀▀░▀░▀░▀▀░░░░${RED}│
+		${RED}└──────────────────────────────────────────────────────────┘
+        ${BLUE}By : Ruema Belajar // @irfnrdh
+	EOF
+}
+
+## Tampilkan Banner
+usage() {
+	banner
+	echo -e ${ORANGE}"\nTermux Installer"
+	echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
+}
+
+## Update, X11-repo, Program Installation
+_pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
+       fsmon geany gtk2 gtk3 htop imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
+	   ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
+	   startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
+	   xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
+       
+       
+## Cek apakah foldernya ada
 if [ -e "$DEST" ]
 then
     echo -en "\033[1;31m" 
@@ -147,3 +199,11 @@ echo -e "\033[1;32m Alhamdulillah Selesai! Cobain perintah 'ind'...  \033[0m"
 
 # $HOME (/data/data/com.termux/files/home)
 # $PREFIX (/data/data/com.termux/files/usr)
+
+
+
+## Main
+
+
+
+
