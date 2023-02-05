@@ -32,9 +32,6 @@ exit_on_signal_SIGTERM() {
 trap exit_on_signal_SIGINT SIGINT
 trap exit_on_signal_SIGTERM SIGTERM
 
-## Letak Installer Folder
-DEST="$HOME/termux-ind"
-
 ## Banner
 banner() {
 	clear
@@ -63,6 +60,9 @@ LIST_OF_APPS_DESKTOP=(bc bmon calc calcurse curl dbus elinks feh desktop-file-ut
 	   	      ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
 	   	      startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
 	   	      xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
+
+## Letak Installer Folder
+DEST="$HOME/termux-ind"
 
 setup_biasa() {
 	echo -e ${RED}"\n[*] Mulai install setup biasa..."
