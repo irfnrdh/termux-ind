@@ -56,13 +56,13 @@ usage() {
 
 	   
 ## Aplikasi Standar
-LIST_OF_APPS_BIASA = (vim neovim htop fish)
+LIST_OF_APPS_BIASA=(vim neovim htop fish)
 
 	# Teks Editor (nano vim neovim micro emacs)
 	# Hex Editor (hexdump od xxd hexcurse ired radare2)
 	
 ## Aplikasi Untuk Development
-LIST_OF_APPS_DEV= (bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \)
+LIST_OF_APPS_DEV=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils)
 
 ## Aplikasi untuk jadi Desktop X11-repo
 LIST_OF_APPS_DESKTOP=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
