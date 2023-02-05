@@ -279,8 +279,7 @@ OPTIONS=(1 "Standart Mod (Minimal)"
          2 "Developer Mod"
          3 "Hacking Mod"
 	     4 "Desktop Mod + VNC"
-         5 "Desktop Mod + Xserver"
-	     6 "Keluar")
+        )
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \k
