@@ -49,12 +49,7 @@ banner() {
 	EOF
 }
 
-## Tampilkan Banner
-usage() {
-	banner
-	echo -e ${ORANGE}"\nTermux Installer"
-	echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
-}
+
 
 	   
 ## Aplikasi Standar
@@ -93,9 +88,16 @@ setup_biasa() {
 	done
 	reset_color
 }
+      
+## Tampilkan Banner
+usage() {
+	banner
+	setup_biasa
+	## echo -e ${ORANGE}"\nTermux Installer"
+	## echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
+}
        
-       
-setup_biasa()
+
        
 ## Cek apakah foldernya ada
 if [ -e "$DEST" ]
