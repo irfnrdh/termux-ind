@@ -47,19 +47,18 @@ banner() {
 
 ## Aplikasi Standar
 _packageBiasa=(vim neovim htop fish)
-
-	# Teks Editor (nano vim neovim micro emacs)
-	# Hex Editor (hexdump od xxd hexcurse ired radare2)
+_packageTextEditor=(nano vim neovim micro emacs)
+_packageHexEditor=(hexdump od xxd hexcurse ired radare2)
 	
 ## Aplikasi Untuk Development
 _packageDevelopment=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils)
 
 ## Aplikasi untuk jadi Desktop X11-repo
-_packageDesktop=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
-       		      fsmon geany gtk2 gtk3 htop imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
-	   	      ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
-	   	      startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
-	   	      xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
+_packageDesktop=(bc bmon calc calcurse curl dbus desktop-file-utils elinks feh fontconfig-utils fsmon \
+		         geany git gtk2 gtk3 htop-legacy imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
+		         ncurses-utils neofetch otter-browser obconf openbox openssl-tool polybar ranger rofi \
+		         startup-notification termux-api pcmanfm tigervnc vim wget xarchiver xbitmaps xcompmgr \
+		         xfce4-settings xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
 
 ## Letak Installer Folder
 DEST="$HOME/termux-ind"
@@ -87,51 +86,54 @@ setup_biasa() {
              
        
 ## Cek apakah foldernya ada
-if [ -e "$DEST" ]
-then
-    echo -en "\033[1;31m" 
-    read -p " Sepertinya folder $DEST Dah ada, Tekan huruf 'y' untuk kita hapus! " -n 1 -r
-    echo -e "\033[0m"
-    if [[ $REPLY =~ ^[Yy]$ ]]
+cek_folder(){
+    if [ -e "$DEST" ]
     then
-        rm -rf "$DEST"
-    else
-        echo -e "\033[1;31m Gagal ! \033[0m" 
-        exit 1
+        echo -en "\033[1;31m" 
+        read -p " Sepertinya folder $DEST Dah ada, Tekan huruf 'y' untuk kita hapus! " -n 1 -r
+        echo -e "\033[0m"
+        if [[ $REPLY =~ ^[Yy]$ ]]
+        then
+            rm -rf "$DEST"
+        else
+            echo -e "\033[1;31m Gagal ! \033[0m" 
+            exit 1
+        fi
     fi
-fi
+}
 
-{ usage; setup_biasa; reset_color; exit 0; }
+# { usage; setup_biasa; reset_color; exit 0; }
 
 # Informasi
-echo "Ini adalah `uname -s` berjalan di `uname -m` processor."
-echo
-echo "Hari ini `date`, Minggu ke-`date +"%V"`."
-echo
-echo "Sistem ini sudah berjalan:"
-uptime
-echo
+cek_informasi(){
+    echo "Ini adalah `uname -s` berjalan di `uname -m` processor."
+    echo
+    echo "Hari ini `date`, Minggu ke-`date +"%V"`."
+    echo
+    echo "Sistem ini sudah berjalan:"
+    uptime
+    echo
+}
 
+# # Mulai Install
+# echo -e "\033[1;32m Kita akan mulai install... \033[0m"
 
-# Mulai Install
-echo -e "\033[1;32m Kita akan mulai install... \033[0m"
+# pkg install -y readline git
 
-pkg install -y readline git
+# echo -e "\033[1;32m Cloning Repositori Termux-Ind ... \033[0m"
+# git clone --depth 1 https://github.com/irfnrdh/termux-ind "$DEST"
 
-echo -e "\033[1;32m Cloning Repositori Termux-Ind ... \033[0m"
-git clone --depth 1 https://github.com/irfnrdh/termux-ind "$DEST"
+# echo $red 
+# echo ""----------------------------------------------------------------------------- ""
+# echo "Termux Installer"
+# echo "---------------------------------------------------------------------------------"
 
-echo $red 
-echo ""----------------------------------------------------------------------------- ""
-echo "Termux Installer"
-echo "---------------------------------------------------------------------------------"
+# echo
+# echo "."
 
-echo
-echo "."
-
-apt update -y  
-termux-setup-storage
-pkg install termux-api
+# apt update -y  
+# termux-setup-storage
+# pkg install termux-api
 
 # Backup
 # tar -zcf /sdcard/termux-backup.tar.gz -C /data/data/com.termux/files ./home ./usr
@@ -155,7 +157,7 @@ pkg install termux-api
 
 
 
-echo " Telah berhasil di install "
+#echo " Telah berhasil di install "
 
 
 ## Setup 
@@ -167,7 +169,7 @@ echo " Telah berhasil di install "
 # XXXXX
 
 # chmod +x "$PREFIX/bin/ind" 
-echo -e "\033[1;32m Alhamdulillah Selesai! Cobain perintah 'ind'...  \033[0m"
+# echo -e "\033[1;32m Alhamdulillah Selesai! Cobain perintah 'ind'...  \033[0m"
 
 # exit
 
@@ -274,9 +276,9 @@ MENU="Silahkan pilih yang kamu suka (selengkapnya ada didokumentasi Termux-Ind),
 OPTIONS=(1 "Standart Mod (Minimal)"
          2 "Developer Mod"
          3 "Hacking Mod"
-	 4 "Desktop Mod + VNC"
+	     4 "Desktop Mod + VNC"
          5 "Desktop Mod + Xserver"
-	 6 "Keluar"
+	     6 "Keluar")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \k
@@ -319,7 +321,7 @@ case $CHOICE in
             clear
             echo "$DESKTOP_XSERVER_MSG"
             ;;
-	 6)
+	    4)
             clear
             exit
             ;;    
