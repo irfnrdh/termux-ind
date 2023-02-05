@@ -19,18 +19,18 @@ reset_color() {
 	printf '\033[37m'
 }
 
-exit_on_signal_SIGINT() {
-    { printf "${RED}\n\n%s\n\n" "[!] Program Interrupted." 2>&1; reset_color; }
-    exit 0
-}
+# exit_on_signal_SIGINT() {
+#     { printf "${RED}\n\n%s\n\n" "[!] Program Interrupted." 2>&1; reset_color; }
+#     exit 0
+# }
 
-exit_on_signal_SIGTERM() {
-    { printf "${RED}\n\n%s\n\n" "[!] Program Terminated." 2>&1; reset_color; }
-    exit 0
-}
+# exit_on_signal_SIGTERM() {
+#     { printf "${RED}\n\n%s\n\n" "[!] Program Terminated." 2>&1; reset_color; }
+#     exit 0
+# }
 
-trap exit_on_signal_SIGINT SIGINT
-trap exit_on_signal_SIGTERM SIGTERM
+# trap exit_on_signal_SIGINT SIGINT
+# trap exit_on_signal_SIGTERM SIGTERM
 
 ## Banner
 banner() {
