@@ -4,8 +4,12 @@
   <h1>Termux Indonesia</h1>
   <p>All About Termux</p>
 </div>
+
+<br>
+<br>    
   
-  
+> Filosofinya : Keterbatasan akan membuat kita lebih banyak belajar
+
 ## Kebutuhan 
 - Tidak perlu di root untuk dapat bekerja
 - Minimal Android 7+ 
