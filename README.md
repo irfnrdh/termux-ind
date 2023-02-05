@@ -5,16 +5,28 @@
   <p>All About Termux</p>
 </div>
   
-## Penggunaan
+  
+## Kebutuhan 
+- Tidak perlu di root untuk dapat bekerja
+- Minimal Android 7+ 
+- Menginstall VNC atau Xserver client untuk jadi desktop (bVNC or XserverXSDL)
+- Termux di Install dari F-Droid
+- TermuxAPI di Install dari F-Droid
+> Termux di google play sudah tidak update lagi
 
-- `pkg install git`
-- `git clone https://github.com/irfnrdh/termux-ind.git`
-- `cd termux-ind && chomod +x run.sh && ./run.sh`
+## Penggunaan
+Untuk memulai instalasi Termux-Ind dapat ikuti langkah-langkah berikut dibawah.
+- `pkg update -y && pkg upgrade -y` 
+- `pkg install wget`
+- `wget https://github.com/irfnrdh/termux-ind/blob/main/installer/setup.sh`
+- `chmod +x setup.sh`
+- `./setup.sh`
 
 ## Apa saja didalamnya?
 - Installer 
-  - Ngoding Mod
-  - Hacking Mod
+  - Package Ngoding Mod
+  - Package Hacking Mod
+  - Package Desktop Mod
 - Dotfiles Basic
 - [Cheatsheet](Cheatsheets.md)
   - [Daftar Perintah di termux](https://github.com/irfnrdh/termux-ind/wiki/Perintah-di-Termux) 
