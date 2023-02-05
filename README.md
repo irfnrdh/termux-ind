@@ -34,5 +34,7 @@ Untuk memulai instalasi Termux-Ind dapat ikuti langkah-langkah berikut dibawah.
 - [Panduan](https://termux.gitbook.io/)
 - [Bookmark](Bookmarks.md)
 
-## Testing
-- Menggunakan Android 13
+## Testing Menggunakan
+- Android 13 aarch64
+- CPU: MT6765V/WB (8) @ 2.301GHz
+- Memory: Ram 4gb
