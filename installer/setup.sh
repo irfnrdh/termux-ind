@@ -4,7 +4,7 @@
 # Installer Termux-Ind - Sebuah Installer Untuk Termux.
 # Copyright hanya milik Allah, kita mah bukan siapa2 (C) 05.02.23 @irfnrdh - Ruema Belajar
 # Penggunaan : 
-# bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )
+# pkg install wget && bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )
 # ==================================================================================================
 
 # Letak Installer Folder
