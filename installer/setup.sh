@@ -1,13 +1,15 @@
 #!/data/data/com.termux/files/usr/bash
 
-# ==================================================================================================
-# Installer Termux-Ind - Sebuah Installer Untuk Termux.
-# Inspirasinya ada di issue (https://github.com/irfnrdh/termux-ind/)
-# Copyright hanya milik Allah, kita mah bukan siapa2 (C) 05.02.23 @irfnrdh - Ruema Belajar
-# Penggunaan : 
-# pkg install wget 
-# bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )
-# ==================================================================================================
+###########################################################################################################
+##  Installer Termux-Ind - Sebuah Installer Untuk Termux.						##
+##  Inspirasinya ada di issue (https://github.com/irfnrdh/termux-ind/)					##
+##  Copyright hanya milik Allah, kita mah bukan siapa2 (C) 05.02.23 @irfnrdh - Ruema Belajar		##
+##  Penggunaan : 											##
+##  - pkg install wget 											##
+##  - bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )	##
+##########################################################################################################	
+
+set -eu -o pipefail
 
 ## ANSI Colors (FG & BG)
 RED="$(printf '\033[31m')"  GREEN="$(printf '\033[32m')"  ORANGE="$(printf '\033[33m')"  BLUE="$(printf '\033[34m')"
@@ -40,18 +42,16 @@ DEST="$HOME/termux-ind"
 banner() {
 	clear
     cat <<- EOF
-		${RED}┌──────────────────────────────────────────────────┐
+		${RED}┌────────────────────────────────────────────────────────┐
 		${RED}│${GREEN}░▀█▀░█▀▀░█▀▄░█▄█░█░█░█░█░░░░░▀█▀░█▀█░█▀▄░░${RED}│
 		${RED}│${GREEN}░░█░░█▀▀░█▀▄░█░█░█░█░▄▀▄░▄▄▄░░█░░█░█░█░█░░${RED}│
 		${RED}│${GREEN}░░▀░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░░░░░▀▀▀░▀░▀░▀▀░░░${RED}│
-		${RED}└───────────────────────────────-──────────────────┘
+		${RED}└────────────────────────────────────────────────────────┘
         ${BLUE}By : Ruema Belajar // @irfnrdh
 	EOF
 }
 
 
-
-	   
 ## Aplikasi Standar
 LIST_OF_APPS_BIASA=(vim neovim htop fish)
 
@@ -179,21 +179,157 @@ echo " Telah berhasil di install "
 # ?>
 # XXXXX
 
-
 # chmod +x "$PREFIX/bin/ind" 
 echo -e "\033[1;32m Alhamdulillah Selesai! Cobain perintah 'ind'...  \033[0m"
 
 # exit
 
+config_base () {
+    # Setup storage permissions.
+    echo "Setting up required storage permissions."
+    echo "Please grant termux storage permissions."
+    termux-setup-storage
+    sleep 2
+
+    # Setup mirrors.
+    echo "Please select/configure your default mirrors."
+    sleep 2
+    termux-change-repo
+
+    # Update and upgrade termux, install termux-api package.
+    echo "Updating and installing base packages."
+    pkg update -y && pkg upgrade -y
+    pkg install -y binutils build-essential curl git htop nano ncurses-utils openssh termux-api
+
+    # Create and link user directories.
+    mkdir "$HOME"/Desktop
+    mkdir "$HOME"/Downloads
+    mkdir "$HOME"/Templates
+    mkdir "$HOME"/Public
+    mkdir "$HOME"/Documents
+    mkdir "$HOME"/Pictures
+    mkdir "$HOME"/Videos
+    mkdir "$HOME"/Music
+    ln -s "$HOME"/storage/music/ "$HOME"/Music
+    ln -s "$HOME"/storage/downloads/ "$HOME"/Downloads
+    ln -s "$HOME"/storage/dcim/ "$HOME"/Pictures
+
+    # Add custom PS1 to bashrc.
+    echo "# Custom PS1 prompt." >> "$HOME"/.bashrc
+    echo "export PS1=\"\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]: \[$(tput sgr0)\]\"" >> "$HOME"/.bashrc
+}
+
+config_minimal () {
+    # Enable the tur-repository.
+    pkg install -y tur-repo
+    pkg update -y && pkg upgrade -y
+
+    # Install minimal set of packages.
+    pkg install -y micro code-server
+
+    # Configuring Micro code editor and installing plugins.
+    echo "Configuring Micro code editor and installing plugins."
+    micro -plugin install autofmt detectindent filemanager manipulator quoter snippets
+
+    # Set filemanager plugin to show by default.
+    sed -i '/config.RegisterCommonOption("filemanager", "openonstart", false)/c\config.RegisterCommonOption("filemanager", "openonstart", true)' "$HOME"/.config/micro/plug/filemanager/filemanager.lua
+}
+
+config_desktop () {
+    # Aktifkan X11 repository.
+    echo "Kita aktifkan X11 repository untuk desktop mod."
+    pkg install -y x11-repo
+    pkg update -y && pkg upgrade -y
+
+    # Install required dependencies
+    echo "Kita pakai XFCE desktop and basic packages."
+    pkg install -y code-oss firefox leafpad python python-tkinter xclip xfce4 xfce4-terminal
+}
+
+config_vnc () {
+    # Mulai Update dan install tigervnc.
+    pkg update -y && pkg upgrade -y
+    pkg install -y tigervnc
+
+    # Mulai Konfigurasi VNC server.
+    echo "Mulai konfigurasi VNC server."
+    echo "Ketika muncul VNC minta password, Password yang diketik tidak terlihat dan maksimal 8 karakter."
+    vncserver -localhost
+    echo "#!/data/data/com.termux/files/usr/bin/sh" > "$HOME"/.vnc/xstartup
+    echo "xfce4-session &" >> "$HOME"/.vnc/xstartup
+    echo "geometry=1920x1080" >> "$HOME"/.vnc/config
+    echo "# VNC display variable." >> "$HOME"/.bashrc
+    echo "export DISPLAY=\":1\"" >> "$HOME"/.bashrc
+    vncserver -kill :1
+}
+
+config_xserver () {
+    echo "Configuring Xserver."
+    echo "# Xserver display variable." >> "$HOME"/.bashrc
+    echo "export DISPLAY=localhost:0" >> "$HOME"/.bashrc
+}
 
 
-# $HOME (/data/data/com.termux/files/home)
-# $PREFIX (/data/data/com.termux/files/usr)
 
+## Main Menu
+TERMINAL=$(tty)
+HEIGHT=15
+WIDTH=40
+CHOICE_HEIGHT=4
+BACKTITLE="Termux-Ind"
+TITLE="Installer"
+MENU="Silahkan pilih yang kamu suka (selengkapnya ada didokumentasi Termux-Ind), gunakan panah atas bawah kiri kanan untuk navigasi dan tekan ENTER memilih pilihan:"
 
+OPTIONS=(1 "Standart Mod (Minimal)"
+         2 "Developer Mod"
+         3 "Hacking Mod"
+	 4 "Desktop Mod + VNC"
+         5 "Desktop Mod + Xserver"
+	 6 "Keluar"
 
-## Main
+CHOICE=$(dialog --clear \
+                --backtitle "$BACKTITLE" \k
+                --title "$TITLE" \
+                --menu "$MENU" \
+                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                "${OPTIONS[@]}" \
+                2>&1 >"$TERMINAL")
 
-
-
-
+clear
+case $CHOICE in
+        1)
+            clear
+            echo "Mulai Installer \"Standart Mod\"."
+            config_base
+            config_minimal
+            source "$HOME"/.bashrc
+            clear
+            echo "$MINIMAL_MSG"
+            ;;
+        2)
+            clear
+            echo "Starting \"Desktop (VNC)\" installation."
+            config_base
+            config_minimal
+            config_desktop
+            config_vnc
+            source "$HOME"/.bashrc
+            clear
+            echo "$DESKTOP_VNC_MSG"
+            ;;
+        3)
+            clear
+            echo "Starting \"Desktop (Xserver)\" installation."
+            config_base
+            config_minimal
+            config_desktop
+            config_xserver
+            source "$HOME"/.bashrc
+            clear
+            echo "$DESKTOP_XSERVER_MSG"
+            ;;
+	 6)
+            clear
+            exit
+            ;;    
+esac
