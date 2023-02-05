@@ -54,13 +54,46 @@ usage() {
 	echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
 }
 
-## Update, X11-repo, Program Installation
-_pkgs=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
-       fsmon geany gtk2 gtk3 htop imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
-	   ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
-	   startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
-	   xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
+	   
+## Aplikasi Standar
+LIST_OF_APPS_BIASA = (vim neovim htop fish)
+
+	# Teks Editor (nano vim neovim micro emacs)
+	# Hex Editor (hexdump od xxd hexcurse ired radare2)
+	
+## Aplikasi Untuk Development
+LIST_OF_APPS_DEV= (bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \)
+
+## Aplikasi untuk jadi Desktop X11-repo
+LIST_OF_APPS_DESKTOP=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
+       		      fsmon geany gtk2 gtk3 htop imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
+	   	      ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
+	   	      startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
+	   	      xfce4-terminal xmlstarlet audacious xorg-font-util xorg-xrdb zsh i3 picom which)
+
+setup_biasa() {
+	echo -e ${RED}"\n[*] Mulai install setup biasa..."
+	echo -e ${CYAN}"\n[*] Termuxnya kita update dulu... \n"
+	{ reset_color; pkg autoclean; pkg upgrade -y; }
+
+	echo -e ${CYAN}"\n[*] Mulai install program... \n"
+	for package in "${LIST_OF_APPS_BIASA[@]}"; do
+		{ reset_color; pkg install -y "$package"; }
+		_ipkg=$(pkg list-installed $package 2>/dev/null | tail -n 1)
+		_checkpkg=${_ipkg%/*}
+		if [[ "$_checkpkg" == "$package" ]]; then
+			echo -e ${GREEN}"\n[*] Program $package Telah Terinstall.\n"
+			continue
+		else
+			echo -e ${MAGENTA}"\n[!] Ada Error di Program $package, Gagal!..\n"
+			{ reset_color; exit 1; }
+		fi
+	done
+	reset_color
+}
        
+       
+setup_biasa()
        
 ## Cek apakah foldernya ada
 if [ -e "$DEST" ]
@@ -77,7 +110,7 @@ then
     fi
 fi
 
-{ usage; reset_color; exit 0; }
+{ usage; setup_biasa; reset_color; exit 0; }
 
 # Informasi
 echo "Ini adalah `uname -s` berjalan di `uname -m` processor."
@@ -129,58 +162,9 @@ pkg install termux-api
 # git config --global user.email "..."
 # git config --global user.name "..."
 
-# Essentials
-pkg install vim
-pkg install nvim
-pkg install htop
-
-
-# apt install python -y           
-# apt install python2 -y
-# apt install ruby -y 
-
-# apt install php -y 
-# apt install perl -y
-# apt install nmap -y
-
-# apt install bash -y
-# apt install clang -y
-# apt install jq -y
-# apt install macchanger -y
-
-# apt install nano -y
-# apt install curl -y
-# apt install tar -y
-# apt install zip -y
-
-# apt install unzip -y
-# apt install tor -y
-# apt install wget -y
-
-# apt install wcalc -y 
-# apt install openssl
-# apt install bmon -y
 
 
 echo " Telah berhasil di install "
-
-# pkg install fish
-
-## Hex Editor
-## hexdump, od and xxd
-# pkg install hexcurse # https://github.com/LonnyGomes/hexcurse
-# pkg install ired     # https://github.com/radare/ired
-# pkg install radare2  # https://rada.re
-
-
-## Text Editor
-
-# pkg install nano
-# pkg install vim
-# pkg install neovim
-# pkg install micro
-# pkg install emacs
-
 
 
 ## Setup 
