@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 ###########################################################################################################
 ##  Installer Termux-Ind - Sebuah Installer Untuk Termux.						                         ##
