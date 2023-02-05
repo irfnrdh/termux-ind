@@ -46,16 +46,16 @@ banner() {
 }
 
 ## Aplikasi Standar
-LIST_OF_APPS_BIASA=(vim neovim htop fish)
+_packageBiasa=(vim neovim htop fish)
 
 	# Teks Editor (nano vim neovim micro emacs)
 	# Hex Editor (hexdump od xxd hexcurse ired radare2)
 	
 ## Aplikasi Untuk Development
-LIST_OF_APPS_DEV=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils)
+_packageDevelopment=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils)
 
 ## Aplikasi untuk jadi Desktop X11-repo
-LIST_OF_APPS_DESKTOP=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
+_packageDesktop=(bc bmon calc calcurse curl dbus elinks feh desktop-file-utils fontconfig-utils \
        		      fsmon geany gtk2 gtk3 htop imagemagick jq leafpad man mpc mpd mutt ncmpcpp \
 	   	      ncurses-utils neofetch otter-browser obconf openssl-tool polybar ranger rofi \
 	   	      startup-notification termux-api pcmanfm tigervnc neovim wget xarchiver xbitmaps \
@@ -70,7 +70,7 @@ setup_biasa() {
 	{ reset_color; pkg autoclean; pkg upgrade -y; }
 
 	echo -e ${CYAN}"\n[*] Mulai install program... \n"
-	for package in "${LIST_OF_APPS_BIASA[@]}"; do
+	for package in "${_packageBiasa[@]}"; do
 		{ reset_color; pkg install -y "$package"; }
 		_ipkg=$(pkg list-installed $package 2>/dev/null | tail -n 1)
 		_checkpkg=${_ipkg%/*}
