@@ -36,6 +36,7 @@ Untuk memulai instalasi Termux-Ind dapat ikuti langkah-langkah berikut dibawah.
 
 ## Testing Menggunakan
 - Android 13 aarch64 
-- CPU: MediaTek MT6765V/WB (8) @ 2.301GHz Helio P35 (12nm)
+- CPU: MediaTek MT6765V/WB (8) @ 2.301GHz Helio P35 (12nm) 
+       Octa-core (4x2.35 GHz Cortex-A53 & 4x1.8 GHz Cortex-A53)
 - GPU : PowerVR GE8320
 - Internal : 64GB / 4GB RAM 
