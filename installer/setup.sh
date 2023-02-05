@@ -1,13 +1,13 @@
 #!/data/data/com.termux/files/usr/bash
 
 ###########################################################################################################
-##  Installer Termux-Ind - Sebuah Installer Untuk Termux.						##
-##  Inspirasinya ada di issue (https://github.com/irfnrdh/termux-ind/)					##
-##  Copyright hanya milik Allah, kita mah bukan siapa2 (C) 05.02.23 @irfnrdh - Ruema Belajar		##
-##  Penggunaan : 											##
-##  - pkg install wget 											##
-##  - bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )	##
-##########################################################################################################	
+##  Installer Termux-Ind - Sebuah Installer Untuk Termux.						                         ##
+##  Inspirasinya ada di issue (https://github.com/irfnrdh/termux-ind/)					                 ##
+##  Copyright hanya milik Allah, kita mah bukan siapa2 (C) 05.02.23 @irfnrdh - Ruema Belajar		     ##
+##  Penggunaan : 											                                             ##
+##  - pkg install wget 											                                         ##
+##  - bash <(wget -qO- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh )	 ##
+###########################################################################################################	
 
 set -eu -o pipefail
 
@@ -21,7 +21,6 @@ reset_color() {
 	printf '\033[37m'
 }
 
-## Script Termination
 exit_on_signal_SIGINT() {
     { printf "${RED}\n\n%s\n\n" "[!] Program Interrupted." 2>&1; reset_color; }
     exit 0
@@ -50,7 +49,6 @@ banner() {
         ${BLUE}By : Ruema Belajar // @irfnrdh
 	EOF
 }
-
 
 ## Aplikasi Standar
 LIST_OF_APPS_BIASA=(vim neovim htop fish)
@@ -88,16 +86,7 @@ setup_biasa() {
 	done
 	reset_color
 }
-      
-## Tampilkan Banner
-usage() {
-	banner
-	setup_biasa
-	## echo -e ${ORANGE}"\nTermux Installer"
-	## echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
-}
-       
-
+             
        
 ## Cek apakah foldernya ada
 if [ -e "$DEST" ]
@@ -270,6 +259,10 @@ config_xserver () {
 }
 
 
+	# banner
+	#  setup_biasa
+	## echo -e ${ORANGE}"\nTermux Installer"
+	## echo -e ${ORANGE}"Usages : $(basename $0) --install | --uninstall | --termux-boot | --termux-boot-uninstall\n"
 
 ## Main Menu
 TERMINAL=$(tty)

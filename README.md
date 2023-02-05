@@ -22,9 +22,17 @@
 Untuk memulai instalasi Termux-Ind dapat ikuti langkah-langkah berikut dibawah.
 - `pkg update -y && pkg upgrade -y` 
 - `pkg install wget`
-- `wget https://github.com/irfnrdh/termux-ind/blob/main/installer/setup.sh`
+- `wget https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh`
 - `chmod +x setup.sh`
 - `./setup.sh`
+
+Cara install termux-ind dapat menggunakan beberapa perintah di terminal kamu dari  `curl`, `wget` atau lainnya yang sama.
+
+| Method    | Command                                                                                           |
+| :-------- | :------------------------------------------------------------------------------------------------ |
+| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh)"` |
+| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh)"`   |
+| **fetch** | `sh -c "$(fetch -o - https://raw.githubusercontent.com/irfnrdh/termux-ind/main/installer/setup.sh)"` |
 
 ## Apa saja didalamnya?
 - Installer 
