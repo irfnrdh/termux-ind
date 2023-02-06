@@ -1,0 +1,38 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab focus=true split_direction="Vertical" name="Development" {
+        pane split_direction="Horizontal" name="VIM"{
+            pane command="zsh" focus=true size="70%" {
+                args "-c" "cd ~/playgrounds/ruema-belajar/ && nvim"
+            }
+            pane split_direction="Vertical" name="FILES" {
+                pane command="zsh" {
+                    args "-c" "cd ~/playgrounds && broot"
+                }
+                pane split_direction="Horizontal" {
+                    pane command="zsh" name="DEBUG" {
+                        args "-c" "cd ~/playgrounds/ruema-belajar && npm run dev"
+                    }
+                    pane command="fish"  name="GIT" {
+                        args "-c" "cd ~/playgrounds/ruema-belajar/ && fish"
+                    }
+                }
+            }
+        }
+    }
+    tab name="Debug"
+    tab name="Log"
+}
+session_name "Ruema Belajar"
+attach_to_session true
+
+
+
